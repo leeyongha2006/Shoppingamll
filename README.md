@@ -325,7 +325,6 @@ ps.setString(6, request.getParameter("city"));
 ps.executeUpdate();
 %>
 ```
-사용자가 수정 버튼을 입력했을 때,  request.getParameter에 있는 값을 표시한다
 ``` javascript
 <form name = "u_data" action = "update_p.jsp" method = "post" onsubmit = "return checkValue()">
 			<table class="table_line">
@@ -357,6 +356,21 @@ ps.executeUpdate();
 					<th>도시코드</th>
 					<td><input type="text" name="city" value="<%=rs.getString("city") %>"></td>
 				</tr>
+```
+사용자가 수정 버튼을 입력했을 때,  request.getParameter에 있는 값을 표시하는 쿼리문을 작성한다
+
+# 회원정보 삭제
+``` java
+<%
+request.setCharacterEncoding("UTF-8");
+
+int d_custno = Integer.parseInt(request.getParameter("d_custno"));
+String sql = "delete from member_tbl_02 where custno = " + d_custno;
+
+Connection conn = DBConnect.getConnection();
+PreparedStatement ps = conn.prepareStatement(sql);
+ps.executeUpdate();
+%>
 ```
 
 
